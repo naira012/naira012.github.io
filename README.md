@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
     }
     input, select {
@@ -26,6 +27,20 @@
       margin-top: 20px;
       padding: 10px;
       border: 1px solid #ccc;
+    }
+    table {
+      margin-top: 20px;
+      font-size: 14px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: right;
+    }
+    table th {
+      background-color: #f2f2f2;
     }
   </style>
 </head>
@@ -77,19 +92,4 @@
 
       const monthlyRate = IR / 12;
       const n = LT * 12;
-      const MP = (DLA * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
-
-      const DTI = ((MDP + MP) / MI) * 100;
-      const totalInterest = MP * n - DLA;
-
-      document.getElementById("results").innerHTML = `
-        <strong>Results:</strong><br>
-        Loan-to-Value (LTV): ${LTV.toFixed(2)}%<br>
-        Monthly Payment: $${MP.toFixed(2)}<br>
-        Debt-to-Income (DTI): ${DTI.toFixed(2)}%<br>
-        Total Interest Paid: $${totalInterest.toFixed(2)}
-      `;
-    }
-  </script>
-</body>
-</html>
+      const MP = (DLA * monthlyRate * Math.p
