@@ -92,7 +92,7 @@
 
       const monthlyRate = IR / 12;
       const n = LT * 12;
-      const MP = (DLA * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+   const MP = (DLA * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
 
       const DTI = ((MDP + MP) / MI) * 100;
       const totalInterest = MP * n - DLA;
