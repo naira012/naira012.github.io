@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -91,4 +92,55 @@
 
       const monthlyRate = IR / 12;
       const n = LT * 12;
-      const MP = (DLA * monthlyRate * Math.p
+      const MP = (DLA * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+
+      const DTI = ((MDP + MP) / MI) * 100;
+      const totalInterest = MP * n - DLA;
+
+      document.getElementById("results").innerHTML = `
+        <strong>Results:</strong><br>
+        Loan-to-Value (LTV): ${LTV.toFixed(2)}%<br>
+        Monthly Payment: $${MP.toFixed(2)}<br>
+        Debt-to-Income (DTI): ${DTI.toFixed(2)}%<br>
+        Total Interest Paid: $${totalInterest.toFixed(2)}
+      `;
+
+      // Amortization Table
+      let amortTable = `
+        <h3>Amortization Schedule</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      let balance = DLA;
+      for (let i = 1; i <= n; i++) {
+        let interest = balance * monthlyRate;
+        let principal = MP - interest;
+        balance -= principal;
+        if (balance < 0) balance = 0;
+        amortTable += `
+          <tr>
+            <td>${i}</td>
+            <td>$${MP.toFixed(2)}</td>
+            <td>$${principal.toFixed(2)}</td>
+            <td>$${interest.toFixed(2)}</td>
+            <td>$${balance.toFixed(2)}</td>
+          </tr>
+        `;
+      }
+
+      amortTable += `</tbody></table>`;
+      document.getElementById("results").innerHTML += amortTable;
+    }
+  </script>
+</body>
+</html>
